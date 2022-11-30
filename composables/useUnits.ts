@@ -4,7 +4,7 @@ export interface Unit {
   displayName: string;
 }
 
-export const useUnits = async () => {
+export const useUnits = async ({ faction = null } = {}) => {
   const { data } = await useAsyncData("units", () =>
     queryContent("/units").findOne()
   );
@@ -12,7 +12,12 @@ export const useUnits = async () => {
   const units = computed<Unit[]>(() => {
     if (!data.value) return [];
     const units = data.value.body;
-    const sorted = useSortBy(units, ["faction", "name"]);
+    let sorted
+    if (faction) {
+      sorted = useFilter(units, { faction })
+    } else {
+      sorted = useSortBy(units, ["faction", "name"]);
+    }
     return sorted.map((unit) => ({ ...unit, displayName: unit.name.replace('_', ' ') }))
   });
 
