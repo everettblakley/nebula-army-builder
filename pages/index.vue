@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { units } = await useUnits();
+const units = useUnits();
 
-const factions = useGroupBy(units.value, "faction");
+const factions = computed(() => useGroupBy(units.value, "faction"));
 </script>
 
 <template>
