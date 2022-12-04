@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { ComputedRef } from "vue";
-import { Unit } from "~~/composables/useUnits";
+import { Ref } from "vue";
+import { FactionOption } from "~~/composables/useFactions";
+import { Unit } from "~~/types";
 
-const factions = ["Pick One", "Exo Militia", "Res'ai", "Legion", "Ugnix"];
-const faction = ref(factions[0]);
-const hasFactionSelected = computed(() => faction.value !== factions[0]);
+const faction = ref<FactionOption | null>(null);
+const hasFactionSelected = computedEager(() => faction.value !== null);
 
 const name = ref("");
 const pointLimit = ref(100);
 
-const units: ComputedRef<Unit[]> = useUnits({ faction });
+const factionLabel = computed(() => faction.value?.label ?? null);
+const units: Ref<Unit[]> = useUnits({ faction: factionLabel });
 
 const selectedUnits = reactive<Record<string, number>>({});
 const handleCountUpdated = (name: string, count: number) => {
@@ -55,16 +56,7 @@ const errors = computed(() => {
       </label>
       <input v-model="name" type="text" class="input input-bordered w-full" />
     </div>
-    <div class="form-control w-full">
-      <label class="label">
-        <span class="label-text">Faction</span>
-      </label>
-      <select v-model="faction" class="select select-bordered">
-        <option v-for="(option, index) in factions" :disabled="index === 0">
-          {{ option }}
-        </option>
-      </select>
-    </div>
+    <faction-picker v-model="faction" />
     <div class="form-control w-full">
       <label class="label">
         <span class="label-text">Point Limit</span>
@@ -96,7 +88,7 @@ const errors = computed(() => {
       </div>
     </div>
 
-    <div class="space-y-3">
+    <div v-if="hasFactionSelected" class="space-y-3">
       <unit-list-view
         v-for="unit in units"
         :key="unit.name"

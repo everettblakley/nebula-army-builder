@@ -13,7 +13,8 @@
     "@vueuse/core": "^9.6.0",
     "@vueuse/nuxt": "^9.6.0",
     "nuxt": "^3.0.0",
-    "nuxt-lodash": "^2.4.1"
+    "nuxt-lodash": "^2.4.1",
+    "postcss-nested": "^6.0.0"
   },
   "dependencies": {
     "daisyui": "^2.42.1"

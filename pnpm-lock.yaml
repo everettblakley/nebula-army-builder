@@ -9,6 +9,7 @@ specifiers:
   daisyui: ^2.42.1
   nuxt: ^3.0.0
   nuxt-lodash: ^2.4.1
+  postcss-nested: ^6.0.0
 
 dependencies:
   daisyui: 2.42.1
@@ -21,6 +22,7 @@ devDependencies:
   '@vueuse/nuxt': 9.6.0_nuxt@3.0.0
   nuxt: 3.0.0
   nuxt-lodash: 2.4.1
+  postcss-nested: 6.0.0
 
 packages:
 
@@ -4930,6 +4932,15 @@ packages:
     dependencies:
       icss-utils: 5.1.0_postcss@8.4.19
       postcss: 8.4.19
+    dev: true
+
+  /postcss-nested/6.0.0:
+    resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.2.14
+    dependencies:
+      postcss-selector-parser: 6.0.11
     dev: true
 
   /postcss-nested/6.0.0_postcss@8.4.19:
