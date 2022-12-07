@@ -6,7 +6,7 @@ const factions = computed(() => useGroupBy(units.value, "faction"));
 
 <template>
   <main class="container mx-auto space-y-4 px-8">
-    <section v-for="(units, faction) in factions" :key="faction">
+    <!-- <section v-for="(units, faction) in factions" :key="faction">
       <div class="prose prose-xl mb-4">
         <h2>{{ faction }}</h2>
       </div>
@@ -26,6 +26,6 @@ const factions = computed(() => useGroupBy(units.value, "faction"));
           </div>
         </article>
       </div>
-    </section>
+    </section> -->
   </main>
 </template>

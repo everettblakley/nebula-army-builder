@@ -1,11 +1,12 @@
 <template>
   <div class="navbar bg-base-100">
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">Nebula Companion</a>
+      <nuxt-link to="/" class="btn btn-ghost normal-case text-xl">Nebula Companion</nuxt-link>
     </div>
-    <nuxt-link class="btn btn-primary" tag="button" to="/lists/new"
-      >New List</nuxt-link
-    >
+    <a href="#new-list" class="btn btn-primary">New List</a>
   </div>
   <NuxtPage />
+  <Teleport to="body">
+    <new-list-modal id="new-list" />
+  </Teleport>
 </template>

@@ -37,7 +37,7 @@ const selectedFaction = useVModel(props, "modelValue", emit);
   @apply flex items-center justify-around;
 
   .faction {
-    @apply outline-none;
+    @apply outline-none cursor-pointer;
 
     .faction__image-wrapper {
       @apply tooltip tooltip-bottom;
@@ -54,8 +54,4 @@ const selectedFaction = useVModel(props, "modelValue", emit);
     }
   }
 }
-/* 'w-20 object-contain transform transition group-hover:scale-110 group-focus:scale-110 group-hover:opacity-100 group-focus:opacity-100',
-            selectedFaction === faction
-              ? 'scale-110 opacity-100'
-              : 'opacity-50', */
 </style>
