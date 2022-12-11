@@ -5,4 +5,10 @@ export interface Unit {
   name: string;
   displayName: string;
   cost: number;
+  base: number | null;
+  initiative: number;
+  defense: number;
+  resilience: number;
+  hp: number; 
+  movement: number;
 }

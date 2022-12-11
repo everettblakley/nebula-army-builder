@@ -11,5 +11,11 @@ export default defineNuxtConfig({
   postcss: {
     plugins: { 'postcss-nested': {} }
   },
-  modules: ['@nuxt/content', '@nuxtjs/tailwindcss', 'nuxt-lodash', '@vueuse/nuxt'],
+  modules: [
+    '@nuxt/content',
+    '@nuxtjs/tailwindcss',
+    'nuxt-lodash',
+    '@vueuse/nuxt',
+    '@nuxtjs/supabase'
+  ],
 })
