@@ -1,7 +1,7 @@
 <template>
   <div class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
-      <form @submit.prevent="createList()" class="space-y-6">
+      <form class="space-y-6">
         <h3 class="font-bold text-lg">New List</h3>
         <div class="form-control w-full">
           <label class="label">
@@ -27,7 +27,7 @@
             href="#"
             class="btn btn-primary"
             :class="{ 'btn-disabled': isInvalid }"
-            @click="createList"
+            @click="submit"
           >
             Create List
           </a>
@@ -39,11 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import slugify from "slugify";
-import uniqid from "uniqid";
 import { FactionOption } from "~~/composables/useFactions";
 
 const router = useRouter();
+const { createList } = useLists();
 
 const name = ref("");
 const faction = ref<FactionOption | null>(null);
@@ -52,14 +51,13 @@ const isInvalid = computed(() => {
   return !isDefined(faction) || !name.value;
 });
 
-const createList = () => {
-  const slug = uniqid(`${slugify(name.value)}-`);
-  const list = {
-    id: slug,
+const submit = () => {
+  const list = createList({
     name: name.value,
     faction: faction.value!.label,
-  };
-  console.debug(list);
-  router.push(`/lists/${slug}`);
+  });
+  console.debug(JSON.stringify(list.value));
+
+  router.push(`/lists/${list.value.id}`);
 };
 </script>
