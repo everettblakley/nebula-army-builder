@@ -16,17 +16,6 @@ import { Unit } from "~~/types";
 
 const { getList } = useLists();
 const route = useRoute();
-const { data } = await useAsyncData("list", () =>
-  getList(route.params.id as string)
-);
-
-if (!data.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "List not found",
-    fatal: true,
-  });
-}
 
 const units = computed<Unit[]>(() => {
   return [];

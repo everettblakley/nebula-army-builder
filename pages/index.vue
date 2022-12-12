@@ -1,13 +1,24 @@
 <script setup lang="ts">
-const headers = useRequestHeaders(["cookie"]);
-const { data: units } = await useFetch("/api/units", {
-  query: { faction: "Exo Militia" },
-  headers: headers as Record<string, string>,
-});
+const [isOpen, toggleOpen] = useToggle(false);
 </script>
 
 <template>
-  <main class="container mx-auto space-y-4 px-8">
-    {{ units }}
+  <main class="prose mx-auto space-y-4 px-8">
+    <section>
+      <h1>Your armies</h1>
+      <div
+        class="border-accent-focus border-2 border-dashed rounded w-full h-56 flex flex-col items-center justify-center"
+      >
+        <p class="text-accent">You have no armies</p>
+        <button class="btn btn-accent" @click="toggleOpen()">
+          Create a new army
+        </button>
+      </div>
+    </section>
+    <modal v-model:open="isOpen">
+      <template #="{ handleClose }">
+        <new-army-form @cancel="handleClose" />
+      </template>
+    </modal>
   </main>
 </template>
