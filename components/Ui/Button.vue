@@ -18,7 +18,7 @@
   >
     <slot>
       <Icon v-if="!loading && icon" :icon="icon" />
-      <span>{{ title }}</span>
+      <span v-if="title">{{ title }}</span>
     </slot>
   </button>
 </template>

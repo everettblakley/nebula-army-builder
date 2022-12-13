@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const isAuthenticated = ref(false);
+const user = useSupabaseUser();
+
+onMounted(() => {
+  console.debug(user);
+});
 </script>
 
 <template>
@@ -10,10 +14,11 @@ const isAuthenticated = ref(false);
       </nuxt-link>
     </div>
     <div class="flex-none space-x-4">
-      <template v-if="isAuthenticated"></template>
+      <template v-if="user">
+        <nuxt-link :to="`/users/${user.id}`" class="btn btn-outline">Profile</nuxt-link>
+      </template>
       <template v-else>
-        <nuxt-link to="sign_up" class="btn btn-secondary btn-outline">Sign Up</nuxt-link>
-        <nuxt-link to="login" class="btn btn-primary">Login</nuxt-link>
+        <nuxt-link to="sign_in" class="btn btn-primary">Sign In</nuxt-link>
       </template>
     </div>
   </div>
