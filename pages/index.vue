@@ -16,7 +16,7 @@ const armies: Ref<Army[]> = computedAsync(
       headers: headers as Record<string, string>,
     });
   },
-  [],
+  undefined,
   loadingArmies
 );
 </script>
@@ -24,17 +24,21 @@ const armies: Ref<Army[]> = computedAsync(
 <template>
   <main class="prose mx-auto space-y-4 px-8">
     <section>
-      <h1>Your armies</h1>
-      <div class="w-full py-28 flex flex-col items-center justify-center">
+      <h1 class="flex items-center justify-between">
+        <span>Your armies</span>
+        <ui-button  @click="toggleNewArmyModalOpen()">
+          Create a new army
+        </ui-button>
+      </h1>
+      <div class="w-full flex flex-col items-center justify-center space-y-4">
         <template v-if="user">
-          <ui-spinner v-if="loadingArmies" size="lg" />
-          <div v-else-if="armies.length === 0">
+          <ui-spinner v-if="armies === undefined || loadingArmies" size="lg" />
+          <div v-else-if="armies.length === 0" class="py-28">
             <p class="text-primary-content text-center">You have no armies</p>
-            <ui-button @click="toggleNewArmyModalOpen()">
-              Create a new army
-            </ui-button>
           </div>
-          <div v-else>{{ armies }}</div>
+          <template v-else>
+            <army-list-view v-for="army in armies" :army="army" />
+          </template>
         </template>
         <template v-else>
           <p>You are not signed in.</p>
