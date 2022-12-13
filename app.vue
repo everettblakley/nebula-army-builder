@@ -15,7 +15,7 @@ onMounted(() => {
     </div>
     <div class="flex-none space-x-4">
       <template v-if="user">
-        <nuxt-link :to="`/users/${user.id}`" class="btn btn-outline">Profile</nuxt-link>
+        <nuxt-link :to="`/users/${user.id}`" class="btn btn-ghost">Profile</nuxt-link>
       </template>
       <template v-else>
         <nuxt-link to="/sign_in" class="btn btn-primary">Sign In</nuxt-link>

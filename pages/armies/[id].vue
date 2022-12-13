@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { Unit } from "~~/types";
+import { Unit } from "~~/lib/types";
 
 const { getList } = useLists();
 const route = useRoute();

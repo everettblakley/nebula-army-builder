@@ -16,9 +16,8 @@
         class="btn btn-primary"
         :class="{ 'btn-disabled': isInvalid }"
         type="submit"
-        @click="submit"
       >
-        Create List
+        Create Army
       </button>
       <button class="btn" @click.prevent="cancel">Cancel</button>
     </div>
@@ -26,30 +25,29 @@
 </template>
 
 <script setup lang="ts">
-import { FactionOption } from "~~/composables/useFactions";
-import { Unit } from "~~/types";
+import { Army, Faction } from "~~/lib/types";
 
 const emit = defineEmits(["cancel"]);
 
 const router = useRouter();
-const { createList } = useLists();
 
 const name = ref("");
-const faction = ref<FactionOption | null>(null);
+const faction = ref<Faction | null>(null);
+const [loading, toggleLoading] = useToggle();
 
 const isInvalid = computed(() => {
   return !isDefined(faction) || !name.value;
 });
 
 const submit = async () => {
-  const list = await $fetch("/api/army", {
+  toggleLoading(true);
+  const army: Army = await $fetch("/api/army", {
     method: "post",
-    body: { name: name.value, faction: faction.value!.label },
+    body: { name: name.value, faction: faction.value },
   });
 
-  console.debug(list);
-
-  // router.push(`/armies/${list?.name}`);
+  toggleLoading(false);
+  router.push(`/armies/${army.id}`);
 };
 
 const cancel = () => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Ref } from "vue";
 import { FactionOption } from "~~/composables/useFactions";
-import { Unit } from "~~/types";
+import { Unit } from "~~/lib/types";
 
 const faction = ref<FactionOption | null>(null);
 const hasFactionSelected = computedEager(() => faction.value !== null);

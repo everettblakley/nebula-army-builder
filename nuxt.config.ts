@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     head: {
       meta: [{
         name: 'description',
-        content: 'Nebula List Builder'
+        content: 'Nebula Army Builder'
       }]
     }
   },

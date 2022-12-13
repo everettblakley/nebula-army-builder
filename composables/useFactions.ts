@@ -1,23 +1,7 @@
-import { Faction } from "~~/types"
-
-export type FactionOption = {
-  label: Faction; code: string;
-}
+import { Faction } from "~~/lib/types"
 
 export const useFactions = () => {
-  const factions = readonly<FactionOption[]>([{
-    label: 'Exo Militia',
-    code: 'exo',
-  }, {
-    label: 'Legion',
-    code: 'legion',
-  }, {
-    label: 'Res\'ai',
-    code: 'resai',
-  }, {
-    label: 'Ugnix',
-    code: 'ugnix'
-  }])
+  const factions = readonly<Faction[]>(['Exo Militia', 'Legion', "Res'Ai", 'Ugnix'])
 
   return factions
 }

@@ -1,4 +1,4 @@
-import { Unit } from "~~/types"
+import { Unit } from "~~/lib/types"
 import { serverSupabaseClient } from "#supabase/server"
 
 export default defineEventHandler(async (event): Promise<Unit[]> => {

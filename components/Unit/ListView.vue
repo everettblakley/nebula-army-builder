@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { useVModel } from "@vueuse/core";
-import { Unit } from "~~/types";
+import { Unit } from "~~/lib/types";
 
 interface Props {
   unit: Unit;

@@ -1,7 +1,7 @@
 import slugify from "slugify";
 import uniqid from 'uniqid';
 import { useStorage } from "@vueuse/core";
-import { Faction } from "~~/types";
+import { Faction } from "~~/lib/types";
 
 interface CreateListProps {
   name: string;

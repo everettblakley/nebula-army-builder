@@ -1,5 +1,5 @@
 import { MaybeRef } from "@vueuse/core";
-import { Unit } from "~~/types";
+import { Unit } from "~~/lib/types";
 
 interface UseUnitsProps {
   faction?: MaybeRef<string | null>

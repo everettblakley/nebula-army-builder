@@ -2,15 +2,15 @@
   <div class="faction-picker">
     <div
       v-for="faction in factions"
-      :key="faction.code"
+      :key="faction"
       :class="['faction', { 'faction--selected': selectedFaction === faction }]"
       tabindex="0"
       @click="selectedFaction = faction"
     >
-      <div class="faction__image-wrapper" :data-tip="faction.label">
+      <div class="faction__image-wrapper" :data-tip="faction">
         <img
-          :src="`/factions/${faction.label}.png`"
-          :alt="faction.label"
+          :src="`/factions/${faction}.png`"
+          :alt="faction"
           class="faction__image"
         />
       </div>
@@ -19,12 +19,12 @@
 </template>
 
 <script setup lang="ts">
-import { FactionOption } from "~~/composables/useFactions";
+import { Faction } from '~~/lib/types';
 
 const factions = useFactions();
 
 interface Props {
-  modelValue: FactionOption | null;
+  modelValue: Faction | null;
 }
 const props = withDefaults(defineProps<Props>(), { modelValue: null });
 const emit = defineEmits(["update:modelValue"]);

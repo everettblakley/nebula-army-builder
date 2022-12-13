@@ -37,7 +37,7 @@ interface ButtonProps {
     | "info"
     | "warning"
     | "error";
-  outline: boolean;
+  outline?: boolean;
   icon?: string;
   loading?: boolean;
 }
@@ -45,5 +45,6 @@ interface ButtonProps {
 withDefaults(defineProps<ButtonProps>(), {
   variant: "primary",
   loading: false,
+  outline: false,
 });
 </script>
