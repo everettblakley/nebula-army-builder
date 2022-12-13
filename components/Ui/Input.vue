@@ -15,9 +15,10 @@
 <script setup lang="ts">
 interface InputProps {
   modelValue?: string | number;
-  type?: "text" | "number";
+  type?: "text" | "number" | "email"; 
   label?: string;
 }
+
 const props = withDefaults(defineProps<InputProps>(), {
   modelValue: undefined,
   type: "text",

@@ -1,9 +1,5 @@
 <script setup lang="ts">
 const user = useSupabaseUser();
-
-onMounted(() => {
-  console.debug(user);
-});
 </script>
 
 <template>
