@@ -1,6 +1,6 @@
 <template>
   <form class="space-y-6" @submit.prevent="submit">
-    <h3 class="font-bold text-lg">New List</h3>
+    <h3 class="font-bold text-lg">New Army</h3>
 
     <ui-input v-model="name" label="Army Name" type="text" required />
 
