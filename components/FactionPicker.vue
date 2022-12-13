@@ -1,55 +1,101 @@
 <template>
-  <div class="faction-picker">
-    <div
+  <RadioGroup class="faction-picker" v-model="selectedFaction">
+    <RadioGroupLabel class="sr-only">Faciton</RadioGroupLabel>
+    <RadioGroupOption
+      as="template"
       v-for="faction in factions"
       :key="faction"
-      :class="['faction', { 'faction--selected': selectedFaction === faction }]"
-      tabindex="0"
-      @click="selectedFaction = faction"
+      :value="faction"
+      v-slot="{ active, checked }"
     >
-      <div class="faction__image-wrapper" :data-tip="faction">
-        <img
-          :src="`/factions/${faction}.png`"
-          :alt="faction"
-          class="faction__image"
-        />
-      </div>
-    </div>
-  </div>
+      <span
+        :class="[
+          'faction',
+          faction.toLowerCase().replace(/'/g, '').replace(/\s/g, '-'),
+          { 'faction--selected': active || checked },
+        ]"
+      >
+        <div class="faction__image-wrapper">
+          <img
+            :src="`/factions/${faction}.png`"
+            :alt="faction"
+            class="faction__image"
+          />
+          <RadioGroupLabel as="p" class="faction__label">{{
+            faction
+          }}</RadioGroupLabel>
+        </div>
+      </span>
+    </RadioGroupOption>
+  </RadioGroup>
 </template>
 
 <script setup lang="ts">
-import { Faction } from '~~/lib/types';
+import { RadioGroup, RadioGroupLabel, RadioGroupOption } from "@headlessui/vue";
+import { Faction } from "~~/lib/types";
 
 const factions = useFactions();
 
 interface Props {
-  modelValue: Faction | null;
+  modelValue: Faction | undefined;
 }
-const props = withDefaults(defineProps<Props>(), { modelValue: null });
+const props = withDefaults(defineProps<Props>(), { modelValue: undefined });
 const emit = defineEmits(["update:modelValue"]);
 
 const selectedFaction = useVModel(props, "modelValue", emit);
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .faction-picker {
   @apply flex items-center justify-around;
 
   .faction {
-    @apply outline-none cursor-pointer;
+    @apply inline-block flex-1 outline-none cursor-pointer;
 
     .faction__image-wrapper {
-      @apply tooltip tooltip-bottom;
+      @apply flex flex-col items-center space-y-2;
+
+      .faction__image,
+      .faction__label {
+        @apply opacity-50 transition transform;
+      }
 
       .faction__image {
-        @apply w-20 object-contain opacity-50 transition transform;
+        @apply w-20 object-contain;
+      }
+
+      .faction__label {
+        @apply text-base text-white font-semibold;
       }
     }
 
-    &:hover, &.faction--selected {
-      .faction__image {
+    --shadow-color: theme(colors.white);
+
+    &.exo-militia {
+      --shadow-color: theme(colors.exo);
+    }
+
+    &.legion {
+      --shadow-color: theme(colors.legion)
+    }
+
+    &.resai {
+      --shadow-color: theme(colors.resai)
+    }
+
+    &.ugnix {
+      --shadow-color: theme(colors.ugnix)
+    }
+
+    &:hover,
+    &.faction--selected {
+      .faction__image,
+      .faction__label {
         @apply scale-110 opacity-100;
+      }
+
+      .faction__label {
+        text-shadow: 0 4px 8px var(--shadow-color);
       }
     }
   }
