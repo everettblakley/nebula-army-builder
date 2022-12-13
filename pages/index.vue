@@ -15,10 +15,10 @@ const [isOpen, toggleOpen] = useToggle(false);
         </button>
       </div>
     </section>
-    <modal v-model:open="isOpen">
+    <ui-modal v-model:open="isOpen">
       <template #="{ handleClose }">
         <new-army-form @cancel="handleClose" />
       </template>
-    </modal>
+    </ui-modal>
   </main>
 </template>

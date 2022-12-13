@@ -1,17 +1,8 @@
 <template>
   <form class="space-y-6" @submit.prevent="submit">
     <h3 class="font-bold text-lg">New List</h3>
-    <div class="form-control w-full">
-      <label class="label">
-        <span class="label-text">List Name</span>
-      </label>
-      <input
-        v-model="name"
-        type="text"
-        class="input input-bordered w-full"
-        required
-      />
-    </div>
+
+    <ui-input v-model="name" label="Army Name" type="text" required />
 
     <div class="form-control w-full">
       <label class="label">
