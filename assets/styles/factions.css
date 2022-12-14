@@ -1,0 +1,35 @@
+:root {
+  --faction-main-color: theme(colors.black);
+  --faction-accent-color: theme(colors.white);
+}
+
+.faction {
+  &.exo-militia {
+    --faction-main-color: theme(colors.exo);
+    --faction-accent-color: theme(colors.white);
+  }
+
+  &.legion {
+    --faction-main-color: theme(colors.legion);
+    --faction-accent-color: theme(colors.black);
+  }
+
+  &.resai {
+    --faction-main-color: theme(colors.resai);
+    --faction-accent-color: theme(colors.white);
+  }
+
+  &.ugnix {
+    --faction-main-color: theme(colors.ugnix);
+    --faction-accent-color: theme(colors.black);
+  }
+
+  &.faction--shadowed {
+    text-shadow: 0 4px 8px var(--faction-main-color);
+  }
+
+  &.faction__block {
+    background-color: var(--faction-main-color);
+    color: var(--faction-accent-color);
+  }
+}

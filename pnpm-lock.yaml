@@ -9,6 +9,7 @@ specifiers:
   '@tailwindcss/typography': ^0.5.8
   '@types/uniqid': ^5.3.2
   '@vueuse/core': ^9.6.0
+  '@vueuse/math': ^9.6.0
   '@vueuse/nuxt': ^9.6.0
   daisyui: ^2.42.1
   nuxt: ^3.0.0
@@ -31,6 +32,7 @@ devDependencies:
   '@tailwindcss/typography': 0.5.8
   '@types/uniqid': 5.3.2
   '@vueuse/core': 9.6.0
+  '@vueuse/math': 9.6.0
   '@vueuse/nuxt': 9.6.0_nuxt@3.0.0
   nuxt: 3.0.0
   nuxt-lodash: 2.4.1
@@ -1264,6 +1266,16 @@ packages:
       '@unhead/ssr': 1.0.4
       '@unhead/vue': 1.0.4_vue@3.2.45
       vue: 3.2.45
+    dev: true
+
+  /@vueuse/math/9.6.0:
+    resolution: {integrity: sha512-bYTFZjTcJwgqPdY7SaxS/J5mrWy1QaESxD5HK5UhXY49DUYf4jjZxXjMVBObM/A46jQgRolqSEQDOXrrpEfEww==}
+    dependencies:
+      '@vueuse/shared': 9.6.0
+      vue-demi: 0.13.11
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
     dev: true
 
   /@vueuse/metadata/9.6.0:

@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   postcss: {
     plugins: { 'postcss-nested': {} }
   },
+  css: ['~~/assets/styles/factions.css'],
   modules: [
     '@nuxt/content',
     '@nuxtjs/tailwindcss',

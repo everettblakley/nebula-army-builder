@@ -10,8 +10,7 @@
     >
       <span
         :class="[
-          'faction',
-          faction.toLowerCase().replace(/'/g, '').replace(/\s/g, '-'),
+          'faction__wrapper',
           { 'faction--selected': active || checked },
         ]"
       >
@@ -21,9 +20,13 @@
             :alt="faction"
             class="faction__image"
           />
-          <RadioGroupLabel as="p" class="faction__label">{{
-            faction
-          }}</RadioGroupLabel>
+          <RadioGroupLabel
+            as="p"
+            :class="`faction__label faction ${getFactionName(faction)} ${
+              (active || checked) && 'faction--shadowed'
+            }`"
+            >{{ faction }}</RadioGroupLabel
+          >
         </div>
       </span>
     </RadioGroupOption>
@@ -42,6 +45,10 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), { modelValue: undefined });
 const emit = defineEmits(["update:modelValue"]);
 
+const getFactionName = (faction: Faction) => {
+  return useFactionName(faction).value;
+};
+
 const selectedFaction = useVModel(props, "modelValue", emit);
 </script>
 
@@ -49,7 +56,7 @@ const selectedFaction = useVModel(props, "modelValue", emit);
 .faction-picker {
   @apply flex items-center justify-around;
 
-  .faction {
+  .faction__wrapper {
     @apply inline-block flex-1 outline-none cursor-pointer;
 
     .faction__image-wrapper {
@@ -69,33 +76,11 @@ const selectedFaction = useVModel(props, "modelValue", emit);
       }
     }
 
-    --shadow-color: theme(colors.white);
-
-    &.exo-militia {
-      --shadow-color: theme(colors.exo);
-    }
-
-    &.legion {
-      --shadow-color: theme(colors.legion)
-    }
-
-    &.resai {
-      --shadow-color: theme(colors.resai)
-    }
-
-    &.ugnix {
-      --shadow-color: theme(colors.ugnix)
-    }
-
     &:hover,
     &.faction--selected {
       .faction__image,
       .faction__label {
         @apply scale-110 opacity-100;
-      }
-
-      .faction__label {
-        text-shadow: 0 4px 8px var(--shadow-color);
       }
     }
   }
