@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'btn space-x-2',
+      'btn gap-2',
       {
         'btn-outline': outline,
         'btn-primary': variant === 'primary',
@@ -12,12 +12,16 @@
         'btn-info': variant === 'info',
         'btn-warning': variant === 'warning',
         'btn-error': variant === 'error',
+        'btn-xs': size === 'xs',
+        'btn-sm': size === 'sm',
+        'btn-md': size === 'md',
+        'btn-lg': size === 'lg',
         loading: loading,
       },
     ]"
   >
+    <Icon v-if="!loading && icon" :icon="icon" :width="16" :height="16" />
     <slot>
-      <Icon v-if="!loading && icon" :icon="icon" />
       <span v-if="title">{{ title }}</span>
     </slot>
   </button>
@@ -37,6 +41,7 @@ interface ButtonProps {
     | "info"
     | "warning"
     | "error";
+  size?: "xs" | "sm" | "md" | "lg";
   outline?: boolean;
   icon?: string;
   loading?: boolean;
@@ -44,6 +49,7 @@ interface ButtonProps {
 
 withDefaults(defineProps<ButtonProps>(), {
   variant: "primary",
+  size: "md",
   loading: false,
   outline: false,
 });

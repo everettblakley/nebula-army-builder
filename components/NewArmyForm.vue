@@ -12,13 +12,12 @@
     </div>
 
     <div class="modal-action">
-      <button
-        class="btn btn-primary"
-        :class="{ 'btn-disabled': isInvalid }"
+      <ui-button
         type="submit"
+        :disabled="isInvalid"
       >
         Create Army
-      </button>
+      </ui-button>
       <button class="btn" @click.prevent="cancel">Cancel</button>
     </div>
   </form>
@@ -32,7 +31,7 @@ const emit = defineEmits(["cancel"]);
 const router = useRouter();
 
 const name = ref("");
-const faction = ref<Faction | null>(null);
+const faction = ref<Faction | undefined>();
 const [loading, toggleLoading] = useToggle();
 
 const isInvalid = computed(() => {
@@ -41,7 +40,7 @@ const isInvalid = computed(() => {
 
 const submit = async () => {
   toggleLoading(true);
-  const army: Army = await $fetch("/api/army", {
+  const army: Army = await $fetch("/api/armies", {
     method: "post",
     body: { name: name.value, faction: faction.value },
   });

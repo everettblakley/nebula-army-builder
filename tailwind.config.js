@@ -10,4 +10,5 @@ module.exports = {
       },
     },
   },
+  safelist: [{ pattern: /(bg|text)-(exo|legion|resai|ugnix)/ }],
 };

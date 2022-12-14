@@ -11,7 +11,7 @@
     ]"
   >
     <h2>
-      {{ unit.displayName }}
+      {{ unit.name }}
       <span class="badge badge-md badge-info bg-current mix-blend-screen"
         ><p class="text-white">{{ unit.cost }}</p></span
       >
