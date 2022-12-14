@@ -1,31 +1,33 @@
 <script setup lang="ts">
-const units = useUnits();
-
-const factions = computed(() => useGroupBy(units.value, "faction"));
+const user = useSupabaseUser();
+const [isOpen, toggleOpen] = useToggle(false);
 </script>
 
 <template>
-  <main class="container mx-auto space-y-4 px-8">
-    <section v-for="(units, faction) in factions" :key="faction">
-      <div class="prose prose-xl mb-4">
-        <h2>{{ faction }}</h2>
-      </div>
-      <div class="flex gap-3 flex-wrap">
-        <article
-          v-for="unit in units"
-          class="card card-compact w-52 bg-base-100 shadow-xl"
-        >
-          <figure>
-            <img :src="`units/${unit.name}.png`" :alt="unit.name" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title !mt-0">{{ unit.displayName }}</h2>
-            <div class="card-actions">
-              <button class="btn btn-primary">Add To List</button>
-            </div>
-          </div>
-        </article>
+  <main class="prose mx-auto space-y-4 px-8">
+    <section>
+      <h1>Your armies</h1>
+      <div class="w-full py-28 flex flex-col items-center justify-center">
+        <template v-if="user">
+          <p class="text-primary-focus-content">You have no armies</p>
+          <ui-button @click="toggleOpen()"> Create a new army </ui-button>
+        </template>
+        <template v-else>
+          <p>
+            You are not signed in. 
+          </p>
+          <p>
+            Sign in or sign up for free to create your
+            first army!
+          </p>
+          <nuxt-link to="/sign_in" class="btn btn-primary mt-7">Sign In</nuxt-link>
+        </template>
       </div>
     </section>
+    <ui-modal v-model:open="isOpen">
+      <template #="{ handleClose }">
+        <new-army-form @cancel="handleClose" />
+      </template>
+    </ui-modal>
   </main>
 </template>

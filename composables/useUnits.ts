@@ -1,11 +1,5 @@
 import { MaybeRef } from "@vueuse/core";
-
-export interface Unit {
-  faction: 'Exo Militia' | 'Res\'ai' | 'Legion' | 'Ugnix';
-  name: string;
-  displayName: string;
-  cost: number;
-}
+import { Unit } from "~~/lib/types";
 
 interface UseUnitsProps {
   faction?: MaybeRef<string | null>

@@ -1,10 +1,20 @@
 <template>
   <div
-    class="px-3 py-2.5 rounded border bg-blue-200 text-blue-800 font-semibold flex items-center justify-between"
+    :class="[
+      'px-3 py-2.5 rounded text-white font-semibold flex items-center justify-between',
+      {
+        'bg-exo': unit.faction === 'Exo Militia',
+        'bg-resai text-black': unit.faction === 'Res\'ai',
+        'bg-legion': unit.faction === 'Legion',
+        'bg-ugnix': unit.faction === 'Ugnix',
+      },
+    ]"
   >
     <h2>
       {{ unit.displayName }}
-      <span class="badge badge-md badge-info">{{ unit.cost }}</span>
+      <span class="badge badge-md badge-info bg-current mix-blend-screen"
+        ><p class="text-white">{{ unit.cost }}</p></span
+      >
     </h2>
     <div class="flex items-center space-x-1.5">
       <button class="btn btn-xs btn-circle" @click="decrement">-</button>
@@ -21,7 +31,7 @@
 
 <script setup lang="ts">
 import { useVModel } from "@vueuse/core";
-import type { Unit } from "~/composables/useUnits";
+import { Unit } from "~~/lib/types";
 
 interface Props {
   unit: Unit;
